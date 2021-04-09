@@ -1,8 +1,9 @@
 const express = require('express');
-
 const { Octokit } = require('@octokit/core');
-const octokit = new Octokit();
+const ObjCommit = require('../models/Commits');
 const { OWNER, REPO, REDIS_HOST, REDIS_PORT } = require('../config');
+
+const octokit = new Octokit();
 
 const routes = express.Router();
 
@@ -25,7 +26,8 @@ routes.get('/commits', async (req, res) => {
         if (gitResponse.data.length === 0) {
           res.json({ err: 'There are not commits' });
         } else {
-          res.json(gitResponse);
+          const commits = new ObjCommit(gitResponse.data);
+          res.json(commits.getSummary());
         }
       },
       (err) => res.status(500).json({ err: 'Something went wrong' })
@@ -42,8 +44,9 @@ routes.get('/commits/:id', (req, res) => {
         repo: REPO,
       })
       .then(
-        (data) => {
-          res.json(data);
+        (gitResponse) => {
+          const detail = new ObjCommit(gitResponse.data);
+          res.json(detail.getDetails());
         },
         (err) => res.status(500).json({ err: 'Something went wrong' })
       );
