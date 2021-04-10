@@ -15,7 +15,7 @@ let client = redis.createClient({
 });
 
 routes.get('/commits', async (req, res) => {
-  const limit = req.query.limit || 10;
+  const limit = req.query.limit || 20;
   const page = req.query.page || 1;
 
   octokit
