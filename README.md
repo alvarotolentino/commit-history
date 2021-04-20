@@ -40,6 +40,21 @@ The URL to access to the application is:
 http://localhost:8080/
 ```
 
+Below some examples of request directly to the backend:
+
+
+* Get commits from the repo (by default 20 results per page):
+
+  http://localhost:5000/commits
+
+* Get commits passing page and limit (results per page)
+
+  http://localhost:5000/commits?limit=1&page=1
+
+* Get detail of a commit
+   
+  http://localhost:5000/commits/6f02acc2c1854b598d2ea825ab762b899b9164ed
+
 After run this command the following will have been created:
 
 Containers:
