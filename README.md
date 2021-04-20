@@ -31,7 +31,13 @@ REACT_APP_BACKEND_PORT=5000
 The entire application can be run with a single terminal command:
 
 ```
-docker-compose -up -d
+docker-compose up -d
+``` 
+
+The URL to access to the application is:
+
+```
+http://localhost:8080/
 ```
 
 After run this command the following will have been created:
